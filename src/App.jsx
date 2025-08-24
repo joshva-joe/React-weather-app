@@ -10,6 +10,7 @@ export default function App() {
   const [status, setStatus] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
   function get() {
     if (!location.trim()) {
@@ -20,7 +21,7 @@ export default function App() {
 
     setLoading(true);
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=df8f18f8a417c5d82bbc4e748d1fd0d6&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -44,12 +45,14 @@ export default function App() {
   }, []);
 
   const getBackground = () => {
-    if (!status) return "sunny";
+    if (!status || !status.weather || status.weather.length === 0) return "sunny";
     const condition = status.weather[0].main;
     if (condition === "Rain") return "rainy";
     if (condition === "Clouds") return "cloudy";
     return "sunny";
   };
+  console.log("API Key:", import.meta.env.VITE_OPENWEATHER_API_KEY);
+
 
   return (
     <div className={`app ${getBackground()}`}>
@@ -62,17 +65,18 @@ export default function App() {
             placeholder="Enter your location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && get()}
           />
           <button onClick={get} disabled={!location.trim()}>
             Search
           </button>
         </div>
 
-        {error && <p className="error">{error}</p>}
+                {error && <p className="error">{error}</p>}
 
         {loading && <p className="loading">Loading weather data...</p>}
 
-        {status && !loading && (
+        {status && !loading && status.weather && status.weather.length > 0 && status.main && status.wind && (
           <>
             <h2 className="city">{status.name}</h2>
 
