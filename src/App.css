@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 97vh;
+  transition: background 0.5s ease-in-out;
+}
+
+/* Backgrounds */
+.sunny {
+  background: linear-gradient(to top, #fddb92, #d1fdff);
+}
+.cloudy {
+  background: linear-gradient(to top, #d7d2cc, #304352);
+}
+.rainy {
+  background: linear-gradient(to top, #667db6, #0082c8, #2f80ed);
+}
+
+/* Card */
+.card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  width: 350px;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+/* Input Section */
+.inputs {
+  margin-bottom: 15px;
+}
+.inputs input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius:0px 20px 20px 0px ;
+  position: relative;
+  left: 15px;
+  width: 20x0px;
+  outline: none;
+}
+.inputs button {
+  padding: 10px 20px;
+  border: none;
+  background: #ff7b54;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.inputs button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+.inputs button:hover:not(:disabled) {
+  background: #ff5a2f;
+}
+
+/* Weather Info */
+.city {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 70px;
+  margin: 15px 0;
+}
+
+.temp {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.desc {
+  text-transform: capitalize;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer div {
+  flex: 1;
+  text-align: center;
+}
+
+.error {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.loading {
+  color: yellow;
+}
+
+@media (max-width: 480px){
+    .footer h3{
+            font-size: 18px;
+    }
+    .inputs input {
+            width: 170px;
+}
+}
